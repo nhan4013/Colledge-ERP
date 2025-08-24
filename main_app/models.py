@@ -84,7 +84,7 @@ class Student(models.Model):
     session = models.ForeignKey(Session, on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):
-        return self.student.last_name + ", " + self.student.first_name
+        return self.student.email
 
 class Library(models.Model):
     student = models.ForeignKey(Student,  on_delete=models.CASCADE, null=True, blank=False)

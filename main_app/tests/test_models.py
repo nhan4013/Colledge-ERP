@@ -31,4 +31,4 @@ class StudentModelTest(TestCase):
 		self.student = Student.objects.create(student=self.user, course=self.course, session=self.session)
 
 	def test_student_str(self):
-		self.assertEqual(str(self.student), 'Smith, Jane')
+		self.assertEqual(str(self.student), 'test@example.com')
