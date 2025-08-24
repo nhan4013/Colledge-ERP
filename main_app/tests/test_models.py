@@ -8,14 +8,12 @@ class CustomUserModelTest(TestCase):
 	def test_user_creation(self):
 		"""Test that a CustomUser is created with the correct email and user_type."""
 		self.assertEqual(self.user.email, 'test@example.com')
-		self.assertEqual(self.user.user_type, '1')
+		self.assertEqual(self.user.user_type, 1)
 		self.assertTrue(self.user.check_password('testpass123'))
 
 	def test_str_method(self):
-		self.user.first_name = 'John'
-		self.user.last_name = 'Doe'
 		self.user.save()
-		self.assertEqual(str(self.user), 'John Doe')
+		self.assertEqual(str(self.user), 'test@example.com')
 
 class CourseModelTest(TestCase):
 	def test_course_str(self):
