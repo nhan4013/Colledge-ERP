@@ -5,9 +5,13 @@ from django.contrib.auth import login, logout
 import requests
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from main_app.backends import EmailBackend
-from main_app.models import Attendance, Session, Subject
+from main_app.models import Attendance, Session, Student, Subject
+from main_app.serializers import StudentSerializer
 # Create your views here.
 
 def login_page(request):
@@ -120,4 +124,12 @@ messaging.setBackgroundMessageHandler(function (payload) {
 });
     """
     return HttpResponse(data, content_type='application/javascript')
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def student_list(request):
+    students = Student.objects.all()
+    serializer = StudentSerializer(students, many=True)
+    return Response(serializer.data)
 
