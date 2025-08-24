@@ -195,9 +195,9 @@ def create_user_profile(sender, instance, created, **kwargs):
         if instance.user_type == 1:
             Admin.objects.create(admin=instance)
         if instance.user_type == 2:
-            Staff.objects.create(admin=instance)
+            Staff.objects.create(staff=instance)
         if instance.user_type == 3:
-            Student.objects.create(admin=instance)
+            Student.objects.create(student=instance)
 
 
 @receiver(post_save, sender=CustomUser)
