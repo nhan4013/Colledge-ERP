@@ -33,6 +33,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     username = None  # Removed username, using email instead
     email = models.EmailField(unique=True)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     user_type = models.CharField(default=1, choices=USER_TYPE, max_length=1)
     gender = models.CharField(max_length=1, choices=GENDER, null=True, blank=True)
     profile_pic = models.ImageField(null=True, blank=True)
@@ -45,7 +47,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     def __str__(self):
-        return  self.first_name + " " + self.last_name
+        return  self.email
     
     
 class Session(models.Model):
