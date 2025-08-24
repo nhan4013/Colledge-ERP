@@ -84,4 +84,3 @@ Notes:
 ## Where test data lives
 - For Postgres: created inside the running Postgres server/container. CI uses an ephemeral container; local tests create a local temporary DB.
 
-If you want, I can add a short `Makefile` or scripts to automate setup and test commands.
