@@ -22,7 +22,10 @@ class CourseModelTest(TestCase):
 
 class StudentModelTest(TestCase):
 	def setUp(self):
-		self.user = CustomUser.objects.create_user(email='student@example.com', password='pass', user_type=3)
+		# Use a unique email for each test run to avoid unique constraint issues
+		import uuid
+		unique_email = f"student_{uuid.uuid4().hex}@example.com"
+		self.user = CustomUser.objects.create_user(email=unique_email, password='pass', user_type=3)
 		self.session = Session.objects.create(start_year='2022-01-01', end_year='2023-01-01')
 		self.course = Course.objects.create(name='Physics')
 		self.student = Student.objects.create(student=self.user, course=self.course, session=self.session)
