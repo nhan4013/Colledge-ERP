@@ -26,7 +26,7 @@ class StudentModelTest(TestCase):
 		self.user = CustomUser.objects.create_user(email="test1@example.com", password='pass', user_type=3)
 		self.session = Session.objects.create(start_year='2022-01-01', end_year='2023-01-01')
 		self.course = Course.objects.create(name='Physics')
-		self.student = Student.objects.create(student=self.user, course=self.course, session=self.session)
+		self.student = Student.objects.get_or_create(student=self.user, course=self.course, session=self.session)
 
 	def test_student_str(self):
 		self.assertEqual(str(self.student), 'test1@example.com')
